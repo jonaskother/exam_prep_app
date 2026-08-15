@@ -21,3 +21,9 @@ Details zum aktuellen Stand und zur geplanten Weiterentwicklung stehen in
 
 Gespeicherte Projekte bleiben lokal im Browser (`localStorage`) über Sessions hinweg
 erhalten — es gibt aktuell noch keinen Export/Backup-Mechanismus (siehe Backlog).
+
+
+---
+## Changelog
+v.0.01 (06/2026) - Idea sketched by Claude
+v.0.1 (15/08/2026) - Reworked the whole app to make it agnostic. You can now feed any project / practice exam (in the right format) and start learning
