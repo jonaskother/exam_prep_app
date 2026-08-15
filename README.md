@@ -9,7 +9,7 @@ einzelne HTML-Datei, Daten liegen lokal im Browser (`localStorage`).
 
 ## Nutzung
 
-1. `index.html` im Browser öffnen (Doppelklick reicht, oder z.B. `python -m http.server`
+1. `study_app.html` im Browser öffnen (Doppelklick reicht, oder z.B. `python -m http.server`
    im Projektordner und dann `localhost:8000` aufrufen).
 2. Auf der Welcome-Seite ein gespeichertes Projekt wählen, das Beispielprojekt laden,
    oder eigene Inhalte als JSON-Datei hochladen (Vorlage: `upload-template.json`, per
