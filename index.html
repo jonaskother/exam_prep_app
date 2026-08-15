@@ -3,8 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Claude Certified Architect — Study App</title>
-<script src="content.js"></script>
+<title>Exam Preparation</title>
 <style>
 :root {
   --bg:             #f8f9fa;
@@ -110,156 +109,6 @@ body {
   min-height: calc(100vh - var(--header-h));
 }
 .tab-panel.active { display: block; }
-
-/* ────────────────────────────────
-   Shared sidebar
-──────────────────────────────── */
-.sidebar {
-  width: var(--sidebar-w);
-  background: var(--sidebar-bg);
-  border-right: 1px solid var(--border);
-  overflow-y: auto;
-  padding: 12px 0 40px;
-  position: fixed;
-  top: var(--header-h);
-  left: 0;
-  bottom: 0;
-  z-index: 100;
-}
-.sidebar-heading {
-  font-size: 10.5px;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.7px;
-  color: var(--text-muted);
-  padding: 10px 16px 6px;
-}
-.sidebar-item {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  padding: 7px 16px 7px 16px;
-  cursor: pointer;
-  font-size: 13px;
-  line-height: 1.4;
-  border-left: 3px solid transparent;
-  transition: background 0.1s;
-}
-.sidebar-item:hover { background: var(--sidebar-hover); }
-.sidebar-item.active {
-  background: var(--sidebar-active);
-  border-left-color: var(--primary);
-  color: var(--primary);
-  font-weight: 600;
-}
-.sidebar-item .pill {
-  margin-left: auto;
-  font-size: 11px;
-  padding: 1px 7px;
-  border-radius: 10px;
-  background: var(--bg);
-  color: var(--text-muted);
-  flex-shrink: 0;
-}
-.sidebar-item.active .pill {
-  background: white;
-  color: var(--primary);
-}
-
-/* ────────────────────────────────
-   Main content area (Q&A)
-──────────────────────────────── */
-.main-content {
-  margin-left: var(--sidebar-w);
-  padding: 28px 36px 80px;
-}
-.content-inner { max-width: 800px; }
-
-.section-header { margin-bottom: 22px; }
-.section-header h2 { font-size: 18px; font-weight: 700; margin-bottom: 4px; }
-.section-header .meta { font-size: 13px; color: var(--text-muted); }
-
-/* ────────────────────────────────
-   Q&A cards
-──────────────────────────────── */
-.q-card {
-  background: var(--card-bg);
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  padding: 20px 24px;
-  margin-bottom: 14px;
-  transition: border-color 0.2s;
-}
-.q-card.qa-correct { border-color: var(--success); }
-.q-card.qa-wrong   { border-color: var(--danger); }
-
-.q-num {
-  font-size: 11px;
-  font-weight: 700;
-  color: var(--text-muted);
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  margin-bottom: 10px;
-}
-.q-scenario {
-  font-size: 14px;
-  line-height: 1.65;
-  margin-bottom: 14px;
-}
-.q-question {
-  font-size: 14px;
-  font-weight: 600;
-  line-height: 1.5;
-  margin-bottom: 14px;
-}
-.q-options { list-style: none; margin-bottom: 14px; }
-.q-option {
-  display: flex;
-  align-items: flex-start;
-  gap: 10px;
-  padding: 9px 13px;
-  margin-bottom: 6px;
-  border: 1.5px solid var(--border);
-  border-radius: 8px;
-  font-size: 13.5px;
-  line-height: 1.5;
-  background: var(--bg);
-  cursor: pointer;
-  transition: all 0.1s;
-  user-select: none;
-}
-.q-option:hover:not(.locked) { background: var(--card-bg); border-color: #adb5bd; }
-.q-option.locked { cursor: default; }
-.q-option .opt-label {
-  font-weight: 700;
-  font-size: 11.5px;
-  min-width: 18px;
-  color: var(--text-muted);
-  margin-top: 1px;
-  flex-shrink: 0;
-}
-.q-option.correct-opt {
-  background: var(--success-light);
-  border-color: var(--success);
-}
-.q-option.correct-opt .opt-label { color: var(--success); }
-.q-option.wrong-opt {
-  background: var(--danger-light);
-  border-color: var(--danger);
-}
-.q-option.wrong-opt .opt-label { color: var(--danger); }
-
-.explanation {
-  display: none;
-  margin-top: 12px;
-  padding: 12px 16px;
-  background: var(--primary-light);
-  border-left: 3px solid var(--primary);
-  border-radius: 0 8px 8px 0;
-  font-size: 13.5px;
-  line-height: 1.65;
-}
-.explanation.visible { display: block; }
 
 /* ────────────────────────────────
    Buttons
@@ -673,50 +522,131 @@ code { background: #f1f3f5; padding: 1px 5px; border-radius: 3px; font-family: v
 .empty-state h3 { font-size: 15px; color: var(--text); margin-bottom: 7px; }
 .empty-state p  { font-size: 13.5px; }
 .empty-state code { font-size: 12px; }
+
+/* ────────────────────────────────
+   Welcome screen
+──────────────────────────────── */
+.welcome-screen {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  padding: 64px 20px 80px;
+}
+.welcome-inner { width: 100%; max-width: 640px; }
+.welcome-title {
+  font-size: 26px;
+  font-weight: 800;
+  color: var(--primary);
+  margin-bottom: 6px;
+}
+.welcome-subtitle {
+  font-size: 14px;
+  color: var(--text-muted);
+  margin-bottom: 36px;
+}
+.welcome-section { margin-bottom: 32px; }
+.welcome-section h2 {
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--text-muted);
+  margin-bottom: 12px;
+}
+.welcome-hint { font-size: 13px; color: var(--text-muted); margin-bottom: 14px; }
+.welcome-empty {
+  font-size: 13.5px;
+  color: var(--text-muted);
+  background: var(--card-bg);
+  border: 1px dashed var(--border);
+  border-radius: 10px;
+  padding: 20px;
+}
+.project-list { display: flex; flex-direction: column; gap: 8px; }
+.project-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 14px 18px;
+  cursor: pointer;
+  transition: border-color 0.12s, background 0.12s;
+}
+.project-card:hover { border-color: var(--primary); background: var(--primary-light); }
+.project-name { font-size: 14px; font-weight: 700; margin-bottom: 3px; }
+.project-meta { font-size: 12px; color: var(--text-muted); }
+.upload-row { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; }
+.upload-error {
+  margin-top: 12px;
+  padding: 10px 14px;
+  background: var(--danger-light);
+  color: var(--danger);
+  border-radius: 8px;
+  font-size: 13px;
+  line-height: 1.5;
+}
 </style>
 </head>
 <body>
 
 <!-- ════════════════════════════════
-     App Header
+     Welcome screen — project selection & upload
 ════════════════════════════════ -->
-<header class="app-header">
-  <div class="header-brand">
-    <div class="title"  id="hdr-title">Claude Certified Architect</div>
-    <div class="subtitle" id="hdr-sub">Foundations</div>
+<div id="welcome-screen" class="welcome-screen">
+  <div class="welcome-inner">
+    <h1 class="welcome-title">Exam Preparation</h1>
+    <p class="welcome-subtitle">Wähle ein gespeichertes Projekt oder lade neue Lerninhalte hoch.</p>
+
+    <section class="welcome-section">
+      <h2>Deine Projekte</h2>
+      <div id="welcome-projects" class="project-list"></div>
+    </section>
+
+    <section class="welcome-section">
+      <h2>Neues Projekt hochladen</h2>
+      <p class="welcome-hint">Lade eine JSON-Datei mit Practice Questions und/oder Study Guide hoch (Format siehe Upload-Template).</p>
+      <div class="upload-row">
+        <label class="btn btn-primary" for="upload-input">Datei auswählen…</label>
+        <input type="file" id="upload-input" accept="application/json" onchange="handleUploadInput(this)" style="display:none">
+        <button class="btn" onclick="downloadTemplate()">Upload-Template herunterladen</button>
+        <button class="btn" onclick="loadSampleProject()">Beispielprojekt laden</button>
+      </div>
+      <div id="upload-error" class="upload-error" style="display:none"></div>
+    </section>
   </div>
-
-  <nav class="tab-nav">
-    <button class="tab-btn active" data-tab="qa">Q &amp; A</button>
-    <button class="tab-btn"        data-tab="practice">Practice Mode</button>
-    <button class="tab-btn"        data-tab="guide">Exam Guide</button>
-  </nav>
-
-  <div class="header-stats" id="hdr-stats"></div>
-</header>
-
-
-<!-- ════════════════════════════════
-     Tab 1 — Q & A
-════════════════════════════════ -->
-<div id="tab-qa" class="tab-panel active">
-  <aside class="sidebar" id="qa-sidebar"></aside>
-  <main class="main-content">
-    <div class="content-inner" id="qa-main"></div>
-  </main>
 </div>
 
 
 <!-- ════════════════════════════════
-     Tab 2 — Practice Mode
+     App view — shown once a project is active
 ════════════════════════════════ -->
-<div id="tab-practice" class="tab-panel">
+<div id="app-view" style="display:none">
+
+<header class="app-header">
+  <div class="header-brand">
+    <div class="title"  id="hdr-title">Exam Preparation</div>
+    <div class="subtitle" id="hdr-sub"></div>
+  </div>
+
+  <nav class="tab-nav">
+    <button class="tab-btn active" data-tab="practice">Practice Questions</button>
+    <button class="tab-btn"        data-tab="guide">Study Guide</button>
+  </nav>
+
+  <div class="header-stats" id="hdr-stats"></div>
+  <button class="btn btn-sm btn-ghost" onclick="showWelcome()">🔁 Projekt wechseln</button>
+</header>
+
+
+<!-- ════════════════════════════════
+     Tab 1 — Practice Questions
+════════════════════════════════ -->
+<div id="tab-practice" class="tab-panel active">
   <div class="practice-panel">
 
     <!-- Setup screen -->
     <div id="px-setup">
       <div class="setup-card">
-        <h2>Practice Mode</h2>
+        <h2>Practice Questions</h2>
         <p class="setup-subtitle">Wähle Kapitel und Anzahl der Fragen für deine Session.</p>
 
         <div class="setup-section">
@@ -777,12 +707,14 @@ code { background: #f1f3f5; padding: 1px 5px; border-radius: 3px; font-family: v
 
 
 <!-- ════════════════════════════════
-     Tab 3 — Exam Guide
+     Tab 2 — Study Guide
 ════════════════════════════════ -->
 <div id="tab-guide" class="tab-panel">
   <aside class="guide-toc" id="guide-toc"></aside>
   <main class="guide-content" id="guide-content"></main>
 </div>
+
+</div><!-- /#app-view -->
 
 
 <!-- ════════════════════════════════
@@ -900,31 +832,348 @@ function optMd(s) {
 // ──────────────────────────────────────────────
 const LABELS = ['A', 'B', 'C', 'D', 'E', 'F'];
 
+// Active project's data — populated by loadProjectIntoApp() once a project is opened.
+let META = {};
+let CHAPTERS = [];
+let STUDY_GUIDE = [];
+
+// Bundled example project (see sample-project.json for the same data as a standalone file),
+// loadable from the welcome screen via "Beispielprojekt laden" without needing a file upload.
+const SAMPLE_PROJECT = {
+  "meta": {
+    "title": "Claude Certified Architect",
+    "subtitle": "Foundations",
+    "passingScore": 720,
+    "totalQuestions": 77,
+    "scoreRange": "100–1.000"
+  },
+  "chapters": [
+    {
+      "id": "domain-1",
+      "title": "Domain 1 – Agentic Architecture & Orchestration",
+      "weight": "27%",
+      "questions": [
+        {
+          "id": "d1-q1",
+          "scenario": "[BEISPIEL] Ein Multi-Agenten-System nutzt einen Koordinator und spezialisierte Subagenten. Der Dokumentenanalyse-Subagent folgt fälschlicherweise Links innerhalb von Dokumenten zu unautorisierten Quellen (Blogs, Login-Seiten), anstatt nur den genehmigten Katalog zu nutzen.",
+          "question": "Welche Maßnahme behebt das Problem am zuverlässigsten auf architektonischer Ebene?",
+          "options": [
+            "`fetch_url` verfügbar lassen, aber Prompt-Anweisungen hinzufügen, die das Öffnen interner Links verbieten.",
+            "Dem Subagenten Websuch-Tools geben, damit er die Relevanz verlinkter Seiten unabhängig prüfen kann.",
+            "`fetch_url` durch ein `load_document`-Tool ersetzen, das Katalog-IDs oder genehmigte URLs akzeptiert und vor dem Abrufen validiert.",
+            "`fetch_url` für jeden Link erlauben und den Synthese-Agenten anweisen, Citations außerhalb des Katalogs zu verwerfen."
+          ],
+          "correct": 2,
+          "explanation": "**Warum C:** Tool-Enforcement ist zuverlässiger als Prompt-Anweisungen. Ein `load_document`-Tool, das Eingaben vor dem Fetch validiert, verhindert unauthorisierten Zugriff **by Design** — unabhängig davon, was das Modell entscheidet.\n\nPrompt-Anweisungen (A) können vom Modell in Edge Cases versehentlich verletzt werden. Web-Such-Tools (B) erweitern den Scope statt ihn einzuschränken. Post-hoc-Filtering (D) lässt unauthorisierte Fetches trotzdem stattfinden."
+        }
+      ]
+    },
+    {
+      "id": "domain-2",
+      "title": "Domain 2 – Tool Design & MCP Integration",
+      "weight": "18%",
+      "questions": []
+    },
+    {
+      "id": "domain-3",
+      "title": "Domain 3 – Claude Code Configuration & Workflows",
+      "weight": "20%",
+      "questions": []
+    },
+    {
+      "id": "domain-4",
+      "title": "Domain 4 – Prompt Engineering & Structured Output",
+      "weight": "20%",
+      "questions": []
+    },
+    {
+      "id": "domain-5",
+      "title": "Domain 5 – Context Management & Reliability",
+      "weight": "15%",
+      "questions": []
+    }
+  ],
+  "studyGuide": [
+    {
+      "id": "sg-overview",
+      "title": "Prüfungsübersicht",
+      "content": "## Format\n\n- **Format:** Multiple Choice, 4 Optionen pro Frage (1 korrekt, 3 Distraktoren)\n- **Fragen:** 77\n- **Score:** Skaliert 100–1.000, Mindest-Passing-Score: **720**\n- **Unbeantwortete Fragen:** Als falsch gewertet — immer raten, niemals leer lassen\n\n## Domänen & Gewichtung\n\n| Domain | Thema | Gewichtung | Fragen (ca.) |\n|--------|-------|-----------|--------------|\n| 1 | Agentic Architecture & Orchestration | 27% | ~21 |\n| 2 | Tool Design & MCP Integration | 18% | ~14 |\n| 3 | Claude Code Configuration & Workflows | 20% | ~15 |\n| 4 | Prompt Engineering & Structured Output | 20% | ~15 |\n| 5 | Context Management & Reliability | 15% | ~12 |\n\n## Lernhinweis\n\nDie Prüfung testet **praktisches Urteilsvermögen**, keine Definitionen auswendig.\nDie entscheidende Frage bei jeder Aufgabe lautet: *Wo soll Verantwortung liegen?*\n\n- Das Modell: Sprache interpretieren, zwischen gut beschriebenen Optionen wählen, Erkenntnisse synthestisieren.\n- Anwendungs-Code: Deterministische Garantien — Berechtigungen, Compliance, State-Persistenz, Retries, Validierung, Auditierung.\n- Tool- und Schema-Design: Formen das Verhalten des Modells. Vages Tool-Design erzeugt Modellfehler, die wie \"Reasoning\"-Fehler aussehen, aber Interface-Fehler sind."
+    },
+    {
+      "id": "sg-1",
+      "title": "1. API Fundamentals & Output Control",
+      "content": "[INHALT HIER EINFÜGEN]\n\n## Was du wissen musst\n\nClaude's Messages API ist **stateless**. Claude erinnert sich nicht an vorherige API-Calls, es sei denn, deine Anwendung schickt den relevanten Inhalt im nächsten Request mit.\n\n..."
+    },
+    {
+      "id": "sg-2",
+      "title": "2. Agentic Systems & Orchestration",
+      "content": "[INHALT HIER EINFÜGEN]"
+    },
+    {
+      "id": "sg-3",
+      "title": "3. Tool Design & MCP",
+      "content": "[INHALT HIER EINFÜGEN]"
+    },
+    {
+      "id": "sg-4",
+      "title": "4. Claude Code",
+      "content": "[INHALT HIER EINFÜGEN]"
+    },
+    {
+      "id": "sg-5",
+      "title": "5. Prompt Engineering & Structured Output",
+      "content": "[INHALT HIER EINFÜGEN]"
+    },
+    {
+      "id": "sg-6",
+      "title": "6. Context Management & Reliability",
+      "content": "[INHALT HIER EINFÜGEN]"
+    }
+  ]
+};
+
+// ──────────────────────────────────────────────
+// Local storage — projects
+// ──────────────────────────────────────────────
+const LS_PROJECTS = 'examPrep.projects';
+const LS_LAST_PROJECT = 'examPrep.lastProjectId';
+
+function loadProjects() {
+  try {
+    return JSON.parse(localStorage.getItem(LS_PROJECTS)) || [];
+  } catch (e) {
+    return [];
+  }
+}
+
+function saveProjects(list) {
+  localStorage.setItem(LS_PROJECTS, JSON.stringify(list));
+}
+
+function getProject(id) {
+  return loadProjects().find(p => p.id === id) || null;
+}
+
+function upsertProject(project) {
+  const list = loadProjects();
+  const i = list.findIndex(p => p.id === project.id);
+  if (i >= 0) list[i] = project; else list.push(project);
+  saveProjects(list);
+}
+
+function setLastProjectId(id) {
+  localStorage.setItem(LS_LAST_PROJECT, id);
+}
+
+function getLastProjectId() {
+  return localStorage.getItem(LS_LAST_PROJECT);
+}
+
+function makeProjectId() {
+  return 'p_' + Date.now().toString(36) + Math.random().toString(36).slice(2, 6);
+}
+
+
+// ──────────────────────────────────────────────
+// Welcome screen
+// ──────────────────────────────────────────────
+function renderWelcome() {
+  const list = loadProjects();
+  const listEl = document.getElementById('welcome-projects');
+
+  if (!list.length) {
+    listEl.innerHTML = `<p class="welcome-empty">Noch keine Projekte gespeichert. Lade ein Beispielprojekt oder eigene Inhalte hoch, um loszulegen.</p>`;
+    return;
+  }
+
+  listEl.innerHTML = list
+    .slice()
+    .sort((a, b) => new Date(b.updatedAt) - new Date(a.updatedAt))
+    .map(p => {
+      const qCount = (p.chapters || []).reduce((n, c) => n + (c.questions || []).length, 0);
+      const gCount = (p.studyGuide || []).length;
+      const updated = p.updatedAt ? new Date(p.updatedAt).toLocaleDateString('de-DE') : '';
+      return `<div class="project-card" onclick="openProject('${p.id}')">
+        <div class="project-name">${esc(p.name)}</div>
+        <div class="project-meta">${qCount} Frage${qCount !== 1 ? 'n' : ''} · ${gCount} Study-Guide-Abschnitt${gCount !== 1 ? 'e' : ''} · zuletzt bearbeitet ${updated}</div>
+      </div>`;
+    }).join('');
+}
+
+function showWelcome() {
+  renderWelcome();
+  document.getElementById('app-view').style.display = 'none';
+  document.getElementById('welcome-screen').style.display = 'flex';
+  window.scrollTo(0, 0);
+}
+
+function showApp() {
+  document.getElementById('welcome-screen').style.display = 'none';
+  document.getElementById('app-view').style.display = 'block';
+  window.scrollTo(0, 0);
+}
+
+function openProject(id) {
+  const project = getProject(id);
+  if (!project) return;
+  setLastProjectId(id);
+  loadProjectIntoApp(project);
+  showApp();
+}
+
+function loadProjectIntoApp(project) {
+  META = project.meta || {};
+  CHAPTERS = project.chapters || [];
+  STUDY_GUIDE = project.studyGuide || [];
+
+  document.getElementById('hdr-title').textContent = META.title || 'Exam Preparation';
+  document.getElementById('hdr-sub').textContent = META.subtitle || '';
+
+  const totalQ = CHAPTERS.reduce((n, c) => n + (c.questions || []).length, 0);
+  document.getElementById('hdr-stats').innerHTML =
+    `<span>${CHAPTERS.length} Kapitel · <strong>${totalQ}</strong> Fragen</span>` +
+    (META.passingScore ? `<span>Passing: <strong>${META.passingScore}</strong></span>` : '');
+
+  buildPracticeSetup();
+  buildGuide();
+
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.toggle('active', b.dataset.tab === 'practice'));
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.toggle('active', p.id === 'tab-practice'));
+}
+
+
+// ──────────────────────────────────────────────
+// Upload — file import, validation, template, sample project
+// ──────────────────────────────────────────────
+const UPLOAD_TEMPLATE = {
+  meta: { title: "Mein Projekt", subtitle: "Kurzer Untertitel", passingScore: 0, totalQuestions: 0, scoreRange: "" },
+  chapters: [
+    {
+      id: "chapter-1",
+      title: "Kapitel 1",
+      weight: "",
+      questions: [
+        {
+          id: "c1-q1",
+          scenario: "Optionaler Szenario-Text (Markdown erlaubt: **fett**, *kursiv*, `code`, Tabellen, Listen, > Zitate, ---).",
+          question: "Die eigentliche Frage.",
+          options: ["Option A", "Option B", "Option C", "Option D"],
+          correct: 0,
+          explanation: "Erklärung, warum die Antwort korrekt ist (Markdown erlaubt)."
+        }
+      ]
+    }
+  ],
+  studyGuide: [
+    { id: "sg-1", title: "1. Abschnittstitel", content: "## Überschrift\n\nText mit **fett**, *kursiv*, `inline code`.\n\n- Punkt 1\n- Punkt 2\n\n> Wichtiger Hinweis" }
+  ]
+};
+
+function downloadJSON(obj, filename) {
+  const blob = new Blob([JSON.stringify(obj, null, 2)], { type: 'application/json' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = filename;
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+  URL.revokeObjectURL(url);
+}
+
+function downloadTemplate() {
+  downloadJSON(UPLOAD_TEMPLATE, 'exam-preparation-template.json');
+}
+
+function validateProjectData(data) {
+  const errors = [];
+  if (!data || typeof data !== 'object' || Array.isArray(data)) {
+    errors.push('Die Datei enthält kein gültiges JSON-Objekt.');
+    return errors;
+  }
+  if (data.chapters !== undefined && !Array.isArray(data.chapters)) {
+    errors.push('"chapters" muss ein Array sein.');
+  }
+  if (data.studyGuide !== undefined && !Array.isArray(data.studyGuide)) {
+    errors.push('"studyGuide" muss ein Array sein.');
+  }
+  const hasChapters = Array.isArray(data.chapters) && data.chapters.length > 0;
+  const hasGuide = Array.isArray(data.studyGuide) && data.studyGuide.length > 0;
+  if (!errors.length && !hasChapters && !hasGuide) {
+    errors.push('Weder "chapters" (Practice Questions) noch "studyGuide" (Study Guide) enthalten Inhalte.');
+  }
+  return errors;
+}
+
+function showUploadError(msg) {
+  const el = document.getElementById('upload-error');
+  el.textContent = msg;
+  el.style.display = 'block';
+}
+
+function clearUploadError() {
+  const el = document.getElementById('upload-error');
+  el.style.display = 'none';
+  el.textContent = '';
+}
+
+function handleUploadInput(input) {
+  const file = input.files[0];
+  if (!file) return;
+
+  const reader = new FileReader();
+  reader.onload = () => {
+    let data;
+    try {
+      data = JSON.parse(reader.result);
+    } catch (e) {
+      showUploadError('Die Datei ist kein gültiges JSON. Bitte prüfe die Syntax.');
+      return;
+    }
+    const errors = validateProjectData(data);
+    if (errors.length) {
+      showUploadError(errors.join(' '));
+      return;
+    }
+    importProjectData(data, file.name.replace(/\.json$/i, ''));
+  };
+  reader.onerror = () => showUploadError('Datei konnte nicht gelesen werden.');
+  reader.readAsText(file);
+  input.value = '';
+}
+
+function importProjectData(data, suggestedName) {
+  const now = new Date().toISOString();
+  const project = {
+    id: makeProjectId(),
+    name: (data.meta && data.meta.title) || suggestedName || 'Neues Projekt',
+    createdAt: now,
+    updatedAt: now,
+    meta: data.meta || {},
+    chapters: data.chapters || [],
+    studyGuide: data.studyGuide || []
+  };
+  upsertProject(project);
+  clearUploadError();
+  openProject(project.id);
+}
+
+function loadSampleProject() {
+  importProjectData(SAMPLE_PROJECT, 'Beispielprojekt: Claude Certified Architect');
+}
+
+
 // ──────────────────────────────────────────────
 // Init
 // ──────────────────────────────────────────────
 function init() {
-  if (typeof META === 'undefined' || typeof CHAPTERS === 'undefined') {
-    const msg = `<div class="empty-state"><div class="big-icon">📄</div>
-      <h3>content.js nicht geladen</h3>
-      <p>Stelle sicher, dass <code>content.js</code> im selben Ordner wie <code>app.html</code> liegt<br>
-      und öffne die Datei über einen lokalen Webserver oder direkt im Browser.</p></div>`;
-    document.getElementById('qa-main').innerHTML = msg;
-    document.getElementById('guide-content').innerHTML = msg;
-    return;
+  renderWelcome();
+  const lastId = getLastProjectId();
+  if (lastId && getProject(lastId)) {
+    openProject(lastId);
+  } else {
+    showWelcome();
   }
-
-  document.getElementById('hdr-title').textContent = META.title    || 'Study App';
-  document.getElementById('hdr-sub').textContent   = META.subtitle || '';
-
-  const totalQ = CHAPTERS.reduce((n, c) => n + (c.questions || []).length, 0);
-  document.getElementById('hdr-stats').innerHTML =
-    `<span>${CHAPTERS.length} Domains · <strong>${totalQ}</strong> Fragen</span>
-     <span>Passing: <strong>${META.passingScore || 720}</strong></span>`;
-
-  buildQA();
-  buildPracticeSetup();
-  buildGuide();
 }
 
 
@@ -942,121 +1191,7 @@ document.querySelectorAll('.tab-btn').forEach(btn => {
 
 
 // ══════════════════════════════════════════════
-// TAB 1 — Q & A
-// ══════════════════════════════════════════════
-let activeChapter = 0;
-
-function buildQA() {
-  if (!CHAPTERS.length) {
-    document.getElementById('qa-main').innerHTML =
-      `<div class="empty-state"><div class="big-icon">📚</div>
-       <h3>Keine Kapitel vorhanden</h3>
-       <p>Füge Kapitel und Fragen in <code>content.js</code> ein.</p></div>`;
-    return;
-  }
-  renderQASidebar();
-  showQAChapter(0);
-}
-
-function renderQASidebar() {
-  document.getElementById('qa-sidebar').innerHTML =
-    `<div class="sidebar-heading">Kapitel</div>` +
-    CHAPTERS.map((ch, i) =>
-      `<div class="sidebar-item${i === 0 ? ' active' : ''}" data-ci="${i}" onclick="showQAChapter(${i})">
-         <span>${ch.title}</span>
-         <span class="pill">${(ch.questions || []).length}</span>
-       </div>`
-    ).join('');
-}
-
-function showQAChapter(idx) {
-  activeChapter = idx;
-  const ch = CHAPTERS[idx];
-
-  document.querySelectorAll('#qa-sidebar .sidebar-item').forEach(el =>
-    el.classList.toggle('active', +el.dataset.ci === idx));
-
-  const main = document.getElementById('qa-main');
-
-  if (!ch.questions || !ch.questions.length) {
-    main.innerHTML =
-      `<div class="section-header"><h2>${ch.title}</h2>
-         <div class="meta">${ch.weight || ''}</div></div>
-       <div class="empty-state">
-         <div class="big-icon">✏️</div>
-         <h3>Noch keine Fragen</h3>
-         <p>Füge Fragen für dieses Kapitel in <code>content.js</code> hinzu.</p>
-       </div>`;
-    window.scrollTo(0, 0);
-    return;
-  }
-
-  let html = `<div class="section-header">
-    <h2>${ch.title}</h2>
-    <div class="meta">${ch.weight || ''} · ${ch.questions.length} Frage${ch.questions.length !== 1 ? 'n' : ''}</div>
-  </div>`;
-
-  ch.questions.forEach((q, qi) => {
-    html += buildQACard(q, qi, ch.id);
-  });
-
-  main.innerHTML = html;
-  window.scrollTo(0, 0);
-}
-
-function buildQACard(q, qi, chId) {
-  const uid = `${chId}-${q.id}`;
-  const opts = (q.options || []).map((opt, oi) =>
-    `<li class="q-option" id="qopt-${uid}-${oi}" onclick="selectQAOption('${uid}', ${oi}, ${q.correct})">
-       <span class="opt-label">${LABELS[oi]}</span>
-       <span>${optMd(opt)}</span>
-     </li>`
-  ).join('');
-
-  return `
-    <div class="q-card" id="qcard-${uid}">
-      <div class="q-num">Frage ${qi + 1}</div>
-      ${q.scenario  ? `<div class="q-scenario">${optMd(q.scenario)}</div>`  : ''}
-      ${q.question  ? `<div class="q-question">${optMd(q.question)}</div>`  : ''}
-      <ul class="q-options">${opts}</ul>
-      <div id="qactions-${uid}"></div>
-      <div class="explanation" id="qexpl-${uid}">${renderMd(q.explanation || '')}</div>
-    </div>`;
-}
-
-function selectQAOption(uid, oi, correct) {
-  const card = document.getElementById(`qcard-${uid}`);
-  if (card.classList.contains('answered')) return;
-  card.classList.add('answered');
-
-  card.querySelectorAll('.q-option').forEach((el, i) => {
-    el.classList.add('locked');
-    if (i === correct)              el.classList.add('correct-opt');
-    if (i === oi && oi !== correct) el.classList.add('wrong-opt');
-  });
-
-  const right = oi === correct;
-  card.classList.add(right ? 'qa-correct' : 'qa-wrong');
-  document.getElementById(`qexpl-${uid}`).classList.add('visible');
-  document.getElementById(`qactions-${uid}`).innerHTML =
-    `<div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
-       <span style="font-size:13px;font-weight:600;color:${right ? 'var(--success)' : 'var(--danger)'}">${right ? '✓ Korrekt' : '✗ Falsch'}</span>
-       <button class="btn btn-sm btn-ghost" onclick="resetQACard('${uid}',${correct})">Zurücksetzen</button>
-     </div>`;
-}
-
-function resetQACard(uid, correct) {
-  const card = document.getElementById(`qcard-${uid}`);
-  card.classList.remove('answered','qa-correct','qa-wrong');
-  card.querySelectorAll('.q-option').forEach(el =>
-    el.classList.remove('locked','correct-opt','wrong-opt'));
-  document.getElementById(`qexpl-${uid}`).classList.remove('visible');
-  document.getElementById(`qactions-${uid}`).innerHTML = '';
-}
-
-
-// ══════════════════════════════════════════════
-// TAB 2 — Practice Mode
+// TAB 1 — Practice Questions
 // ══════════════════════════════════════════════
 const px = {
   questions: [],
@@ -1284,7 +1419,7 @@ function abortPractice() {
 
 
 // ══════════════════════════════════════════════
-// TAB 3 — Study Guide
+// TAB 2 — Study Guide
 // ══════════════════════════════════════════════
 function buildGuide() {
   const toc     = document.getElementById('guide-toc');
@@ -1293,8 +1428,8 @@ function buildGuide() {
   if (!STUDY_GUIDE || !STUDY_GUIDE.length) {
     content.innerHTML =
       `<div class="empty-state"><div class="big-icon">📖</div>
-       <h3>Kein Exam Guide vorhanden</h3>
-       <p>Füge Abschnitte zum <code>STUDY_GUIDE</code> Array in <code>content.js</code> hinzu.</p></div>`;
+       <h3>Kein Study Guide vorhanden</h3>
+       <p>Dieses Projekt enthält keinen Study-Guide-Inhalt.</p></div>`;
     toc.innerHTML = '';
     return;
   }
