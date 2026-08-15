@@ -27,3 +27,8 @@ erhalten — es gibt aktuell noch keinen Export/Backup-Mechanismus (siehe Backlo
 ## Changelog
 v.0.01 (06/2026) - Idea sketched by Claude
 v.0.1 (15/08/2026) - Reworked the whole app to make it agnostic. You can now feed any project / practice exam (in the right format) and start learning
+
+
+---
+## Personal Note / Motivation
+This project was created out of personal necessity and the desire to learn Claude Code. I'm trying my best to learn in my free time. Most work is done by Claude Code. I don't have any intentions or further plans, I'm just curious - watching and learning. 
