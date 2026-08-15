@@ -5,10 +5,7 @@ Fragenkataloge (**Practice Questions**) und Lernzusammenfassungen (**Study Guide
 Projekt hochladen und im Browser durchgehen. Kein Backend, kein Build-Schritt — eine
 einzelne HTML-Datei, Daten liegen lokal im Browser (`localStorage`).
 
-**Status: v0.01 — erster Aufschlag / Idee.** Das ist noch kein stabiles Produkt, sondern
-ein früher Prototyp, an dem sich das Datenmodell und die Bedienung noch ändern können.
-Details zum aktuellen Stand und zur geplanten Weiterentwicklung stehen in
-[`requirements.md`](./requirements.md).
+
 
 ## Nutzung
 
@@ -25,8 +22,12 @@ erhalten — es gibt aktuell noch keinen Export/Backup-Mechanismus (siehe Backlo
 
 ---
 ## Changelog
-v.0.01 (06/2026) - Idea sketched by Claude
-v.0.1 (15/08/2026) - Reworked the whole app to make it agnostic. You can now feed any project / practice exam (in the right format) and start learning
+**v0.01 (03/2026) — erster Aufschlag / Idee.** Das ist noch kein stabiles Produkt, sondern
+ein früher Prototyp, an dem sich das Datenmodell und die Bedienung noch ändern können.
+Details zum aktuellen Stand und zur geplanten Weiterentwicklung stehen in
+[`requirements.md`](./requirements.md).
+
+**v.0.1 (15/08/2026) - erster Prototyp** Reworked the whole app to make it agnostic. You can now feed any project / practice exam (in the right format) and start learning
 
 
 ---
