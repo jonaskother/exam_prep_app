@@ -1,0 +1,38 @@
+{
+  "meta": {
+    "title": "Mein Projekt",
+    "subtitle": "Kurzer Untertitel",
+    "passingScore": 0,
+    "totalQuestions": 0,
+    "scoreRange": ""
+  },
+  "chapters": [
+    {
+      "id": "chapter-1",
+      "title": "Kapitel 1",
+      "weight": "",
+      "questions": [
+        {
+          "id": "c1-q1",
+          "scenario": "Optionaler Szenario-Text (Markdown erlaubt: **fett**, *kursiv*, `code`, Tabellen, Listen, > Zitate, ---).",
+          "question": "Die eigentliche Frage.",
+          "options": [
+            "Option A",
+            "Option B",
+            "Option C",
+            "Option D"
+          ],
+          "correct": 0,
+          "explanation": "Erklärung, warum die Antwort korrekt ist (Markdown erlaubt)."
+        }
+      ]
+    }
+  ],
+  "studyGuide": [
+    {
+      "id": "sg-1",
+      "title": "1. Abschnittstitel",
+      "content": "## Überschrift\n\nText mit **fett**, *kursiv*, `inline code`.\n\n- Punkt 1\n- Punkt 2\n\n> Wichtiger Hinweis"
+    }
+  ]
+}
