@@ -1,29 +1,8 @@
 # Requirements & Roadmap — Exam Preparation
 
-Stand: v0.01 → v0.02 (erster Aufschlag, aktiv in Bewegung). Diese Datei hält fest, was
-heute funktioniert, was als nächstes geplant ist (Longlist) und welche Ideen mittelfristig
-interessant, aber noch nicht priorisiert sind (Backlog).
+## Shortlist
 
-## Implemented
-
-- **Practice Questions** (vormals "Practice Mode"): Kapitel auswählen, Anzahl Fragen wählen,
-  Quiz durchlaufen (Multiple Choice, 4 Optionen), pro Frage Erklärung nach Beantwortung,
-  Ergebnis-Screen mit Score, Pass/Fail-Schwelle und Fragen-Review.
-- **Study Guide** (vormals "Exam Guide"): Inhaltsverzeichnis mit Scrollspy, Markdown-Rendering
-  (Fett/Kursiv/Code/Code-Blöcke/Tabellen/Listen/Blockzitate/Trennlinien).
-- **Welcome Page & Projektauswahl**: Startbildschirm zeigt gespeicherte Projekte, erlaubt das
-  Öffnen eines bestehenden Projekts oder das Anlegen eines neuen; zuletzt geöffnetes Projekt
-  wird beim nächsten Besuch automatisch geladen (`localStorage`, session-übergreifend).
-- **Upload eigener Inhalte**: JSON-Upload für Fragen und/oder Study Guide über die
-  Welcome-Seite, inkl. Basis-Validierung (gültiges JSON, erwartete Felder vorhanden) mit
-  verständlicher Fehlermeldung bei ungültigen Dateien.
-- **Upload-Template**: Download einer leeren Beispiel-JSON-Datei über die Welcome-Seite.
-- **Beispielprojekt**: Bestehender Beispielinhalt ("Claude Certified Architect") als
-  importierbares Beispielprojekt verfügbar, wird nicht automatisch geladen.
-- **Naming**: App heißt einheitlich "Exam Preparation", keine personenbezogenen Strings
-  mehr in Titel, Header, Dateinamen oder Doku.
-- Kein Backend, keine Build-Pipeline — eine einzelne `index.html`, läuft direkt im Browser
-  oder über einen simplen Static-Host.
+- **Multiple Choice**
 
 ## Longlist
 
