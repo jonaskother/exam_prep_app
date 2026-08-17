@@ -30,6 +30,7 @@ Details zum aktuellen Stand und zur geplanten Weiterentwicklung stehen in
 **v.0.01 (15/08/2026) - erster Prototyp** Reworked the whole app to make it agnostic. You can now feed any project / practice exam (in the right format) and start learning
 
 **v.0.01.01 (15/08/2026) - Frontend Anpassungen** Minor change, more appealing frontend
+
 **v.0.01.02 (15/08/2026) - kleinere Fixes**
 
 
