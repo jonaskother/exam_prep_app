@@ -481,6 +481,38 @@ body, .app-header, .setup-card, .quiz-q-card, .results-card, .project-card,
   margin-top: 1px;
   flex-shrink: 0;
 }
+.quiz-opt .opt-check {
+  width: 15px;
+  height: 15px;
+  margin-top: 2px;
+  flex-shrink: 0;
+  border: 1.5px solid var(--border-strong);
+  border-radius: 4px;
+  position: relative;
+  transition: all 0.12s;
+}
+.quiz-opt.selected .opt-check { border-color: var(--primary); background: var(--primary); }
+.quiz-opt.selected .opt-check::after {
+  content: '';
+  position: absolute;
+  left: 4px;
+  top: 1px;
+  width: 4px;
+  height: 8px;
+  border: solid #fff;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+.quiz-opt.correct .opt-check { border-color: var(--success); }
+.quiz-opt.correct.selected .opt-check { background: var(--success); }
+.quiz-opt.wrong .opt-check { border-color: var(--danger); }
+.quiz-opt.wrong.selected .opt-check { background: var(--danger); }
+.quiz-multi-hint {
+  font-size: 11.5px;
+  color: var(--text-muted);
+  font-style: italic;
+  margin: -2px 0 10px;
+}
 
 .quiz-explanation {
   display: none;
@@ -1155,6 +1187,19 @@ const SAMPLE_PROJECT = {
           ],
           "correct": 2,
           "explanation": "**Warum C:** Tool-Enforcement ist zuverlässiger als Prompt-Anweisungen. Ein `load_document`-Tool, das Eingaben vor dem Fetch validiert, verhindert unauthorisierten Zugriff **by Design** — unabhängig davon, was das Modell entscheidet.\n\nPrompt-Anweisungen (A) können vom Modell in Edge Cases versehentlich verletzt werden. Web-Such-Tools (B) erweitern den Scope statt ihn einzuschränken. Post-hoc-Filtering (D) lässt unauthorisierte Fetches trotzdem stattfinden."
+        },
+        {
+          "id": "d1-q2",
+          "scenario": "[BEISPIEL – Multiple Choice] Ein Orchestrator-Agent delegiert Aufgaben an mehrere spezialisierte Subagenten und muss dabei zuverlässig, nachvollziehbar und sicher bleiben.",
+          "question": "Welche der folgenden Maßnahmen tragen zu einer robusten Multi-Agenten-Architektur bei? (Mehrfachauswahl)",
+          "options": [
+            "Jedem Subagenten nur die Tools geben, die er für seine spezifische Rolle tatsächlich benötigt.",
+            "Alle Subagenten Zugriff auf sämtliche verfügbaren Tools geben, damit sie flexibel bleiben.",
+            "Ergebnisse von Subagenten strukturiert validieren, bevor sie in den nächsten Schritt einfließen.",
+            "Fehler von Subagenten stillschweigend ignorieren, damit der Gesamtworkflow nicht unterbrochen wird."
+          ],
+          "correct": [0, 2],
+          "explanation": "**Warum A und C:** Least-Privilege-Tool-Zugriff pro Subagent reduziert die Angriffsfläche und Fehlerquellen. Strukturierte Validierung von Zwischenergebnissen verhindert, dass Fehler unbemerkt weiterverarbeitet werden.\n\nUnnötig breiter Tool-Zugriff (B) erhöht das Risiko unautorisierter Aktionen. Fehler stillschweigend zu ignorieren (D) verschleiert Probleme, statt sie zu beheben."
         }
       ]
     },
@@ -1350,6 +1395,14 @@ const UPLOAD_TEMPLATE = {
           options: ["Option A", "Option B", "Option C", "Option D"],
           correct: 0,
           explanation: "Erklärung, warum die Antwort korrekt ist (Markdown erlaubt)."
+        },
+        {
+          id: "c1-q2",
+          scenario: "Optionaler Szenario-Text für eine Multiple-Choice-Frage (mehrere richtige Antworten).",
+          question: "Welche der folgenden Aussagen treffen zu? (Mehrfachauswahl)",
+          options: ["Option A", "Option B", "Option C", "Option D"],
+          correct: [0, 2],
+          explanation: "Erklärung, warum A und C korrekt sind (Markdown erlaubt)."
         }
       ]
     }
@@ -1391,6 +1444,17 @@ function validateProjectData(data) {
   const hasGuide = Array.isArray(data.studyGuide) && data.studyGuide.length > 0;
   if (!errors.length && !hasChapters && !hasGuide) {
     errors.push('Weder "chapters" (Practice Questions) noch "studyGuide" (Study Guide) enthalten Inhalte.');
+  }
+  if (hasChapters) {
+    data.chapters.forEach(ch => {
+      (ch.questions || []).forEach(q => {
+        if (!Array.isArray(q.correct)) return;
+        const optCount = (q.options || []).length;
+        if (!q.correct.length || q.correct.some(ci => !Number.isInteger(ci) || ci < 0 || ci >= optCount)) {
+          errors.push(`Frage "${q.id || '?'}": "correct" enthält ungültige Indizes für die vorhandenen Optionen.`);
+        }
+      });
+    });
   }
   return errors;
 }
@@ -1631,10 +1695,11 @@ function startPractice() {
 }
 
 function renderQuestion() {
-  const q     = px.questions[px.idx];
-  const total = px.questions.length;
+  const q       = px.questions[px.idx];
+  const total   = px.questions.length;
+  const isMulti = Array.isArray(q.correct);
 
-  px.selected = null;
+  px.selected = isMulti ? new Set() : null;
   px.checked  = false;
 
   document.getElementById('px-prog-text').textContent   = `Frage ${px.idx + 1} von ${total}`;
@@ -1644,11 +1709,13 @@ function renderQuestion() {
   let body = '';
   if (q.scenario) body += `<div class="quiz-scenario">${optMd(q.scenario)}</div>`;
   if (q.question) body += `<div class="quiz-question">${optMd(q.question)}</div>`;
+  if (isMulti)     body += `<div class="quiz-multi-hint">Mehrere Antworten möglich</div>`;
   document.getElementById('px-q-body').innerHTML = body;
 
   document.getElementById('px-opts').innerHTML = (q.options || []).map((opt, oi) =>
     `<li class="quiz-opt" data-oi="${oi}" onclick="selectOpt(${oi})">
        <span class="opt-label">${LABELS[oi]}</span>
+       ${isMulti ? '<span class="opt-check"></span>' : ''}
        <span>${optMd(opt)}</span>
      </li>`
   ).join('');
@@ -1663,16 +1730,28 @@ function renderQuestion() {
 
 function selectOpt(oi) {
   if (px.checked) return;
-  px.selected = oi;
-  document.querySelectorAll('.quiz-opt').forEach(el =>
-    el.classList.toggle('selected', +el.dataset.oi === oi));
-  document.getElementById('px-check-btn').disabled = false;
+  const q = px.questions[px.idx];
+
+  if (Array.isArray(q.correct)) {
+    if (px.selected.has(oi)) px.selected.delete(oi); else px.selected.add(oi);
+    document.querySelectorAll('.quiz-opt').forEach(el =>
+      el.classList.toggle('selected', px.selected.has(+el.dataset.oi)));
+    document.getElementById('px-check-btn').disabled = px.selected.size === 0;
+  } else {
+    px.selected = oi;
+    document.querySelectorAll('.quiz-opt').forEach(el =>
+      el.classList.toggle('selected', +el.dataset.oi === oi));
+    document.getElementById('px-check-btn').disabled = false;
+  }
 }
 
 function checkAnswer() {
   const q       = px.questions[px.idx];
   const correct = q.correct;
-  const right   = px.selected === correct;
+  const isMulti = Array.isArray(correct);
+  const right   = isMulti
+    ? correct.length === px.selected.size && correct.every(ci => px.selected.has(ci))
+    : px.selected === correct;
   px.checked    = true;
   px.results.push({ correct: right, q });
 
@@ -1680,8 +1759,11 @@ function checkAnswer() {
     const oi = +el.dataset.oi;
     el.classList.add('locked');
     el.classList.remove('selected');
-    if (oi === correct)             el.classList.add('correct');
-    if (oi === px.selected && !right) el.classList.add('wrong');
+    const isCorrectOpt  = isMulti ? correct.includes(oi) : oi === correct;
+    const isSelectedOpt = isMulti ? px.selected.has(oi) : oi === px.selected;
+    if (isCorrectOpt)                     el.classList.add('correct');
+    if (isSelectedOpt && !isCorrectOpt)   el.classList.add('wrong');
+    if (isMulti && isSelectedOpt)         el.classList.add('selected');
   });
 
   if (q.explanation && px.mode !== 'exam') {

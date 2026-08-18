@@ -58,6 +58,27 @@ Arrays muss aber Inhalte haben, sonst wird der Upload abgelehnt.
 - `correct` ist der 0-basierte Index der richtigen Antwort (0=A, 1=B, 2=C, 3=D).
 - Mehrzeiliger Text in JSON: Zeilenumbrüche als `\n` schreiben.
 
+### Multiple-Choice (mehrere richtige Antworten)
+
+Statt eines einzelnen Index kann `correct` auch ein **Array von Indizes**
+sein — dann müssen beim Beantworten alle diese Optionen (und keine anderen)
+ausgewählt werden, damit die Frage als richtig gilt. Die App erkennt den
+Fragetyp automatisch am Datentyp von `correct`, es ist kein zusätzliches
+Feld nötig:
+
+```json
+{
+  "id": "d1-q2",
+  "question": "Welche der folgenden Aussagen treffen zu?",
+  "options": ["Option A Text", "Option B Text", "Option C Text", "Option D Text"],
+  "correct": [0, 2],
+  "explanation": "**Warum A und C:** Erklärung hier."
+}
+```
+
+Multiple-Choice-Fragen zählen genauso wie Single-Choice-Fragen als eine
+Frage in der Auswertung — es gibt keine gesonderte Gewichtung.
+
 ---
 
 ## Study-Guide-Abschnitt hinzufügen (`studyGuide`)
