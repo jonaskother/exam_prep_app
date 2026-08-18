@@ -24,6 +24,19 @@
           ],
           "correct": 2,
           "explanation": "**Warum C:** Tool-Enforcement ist zuverlässiger als Prompt-Anweisungen. Ein `load_document`-Tool, das Eingaben vor dem Fetch validiert, verhindert unauthorisierten Zugriff **by Design** — unabhängig davon, was das Modell entscheidet.\n\nPrompt-Anweisungen (A) können vom Modell in Edge Cases versehentlich verletzt werden. Web-Such-Tools (B) erweitern den Scope statt ihn einzuschränken. Post-hoc-Filtering (D) lässt unauthorisierte Fetches trotzdem stattfinden."
+        },
+        {
+          "id": "d1-q2",
+          "scenario": "[BEISPIEL – Multiple Choice] Ein Orchestrator-Agent delegiert Aufgaben an mehrere spezialisierte Subagenten und muss dabei zuverlässig, nachvollziehbar und sicher bleiben.",
+          "question": "Welche der folgenden Maßnahmen tragen zu einer robusten Multi-Agenten-Architektur bei? (Mehrfachauswahl)",
+          "options": [
+            "Jedem Subagenten nur die Tools geben, die er für seine spezifische Rolle tatsächlich benötigt.",
+            "Alle Subagenten Zugriff auf sämtliche verfügbaren Tools geben, damit sie flexibel bleiben.",
+            "Ergebnisse von Subagenten strukturiert validieren, bevor sie in den nächsten Schritt einfließen.",
+            "Fehler von Subagenten stillschweigend ignorieren, damit der Gesamtworkflow nicht unterbrochen wird."
+          ],
+          "correct": [0, 2],
+          "explanation": "**Warum A und C:** Least-Privilege-Tool-Zugriff pro Subagent reduziert die Angriffsfläche und Fehlerquellen. Strukturierte Validierung von Zwischenergebnissen verhindert, dass Fehler unbemerkt weiterverarbeitet werden.\n\nUnnötig breiter Tool-Zugriff (B) erhöht das Risiko unautorisierter Aktionen. Fehler stillschweigend zu ignorieren (D) verschleiert Probleme, statt sie zu beheben."
         }
       ]
     },

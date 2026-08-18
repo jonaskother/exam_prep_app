@@ -24,6 +24,14 @@
           ],
           "correct": 0,
           "explanation": "Erklärung, warum die Antwort korrekt ist (Markdown erlaubt)."
+        },
+        {
+          "id": "c1-q2",
+          "scenario": "Optionaler Szenario-Text für eine Multiple-Choice-Frage (mehrere richtige Antworten).",
+          "question": "Welche der folgenden Aussagen treffen zu? (Mehrfachauswahl)",
+          "options": ["Option A", "Option B", "Option C", "Option D"],
+          "correct": [0, 2],
+          "explanation": "Erklärung, warum A und C korrekt sind (Markdown erlaubt)."
         }
       ]
     }
