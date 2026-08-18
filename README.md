@@ -33,6 +33,8 @@ Details zum aktuellen Stand und zur geplanten Weiterentwicklung stehen in
 
 **v.0.01.02 (15/08/2026) - kleinere Fixes**
 
+**v.0.01.03 (18/08/2026) - Multiple Choice**
+
 
 ---
 ## Personal Note / Motivation
